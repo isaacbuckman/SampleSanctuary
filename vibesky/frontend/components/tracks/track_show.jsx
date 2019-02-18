@@ -3,6 +3,7 @@ import { Link, Redirect, withRouter } from 'react-router-dom';
 import WaveFormContainer from '../trackplayer/waveform_container';
 import CommentsContainer from '../comments/comments_container';
 import CommentIndexContainer from '../comments/comments_index_container';
+import TrackIndex from './track_index'; 
 
 class TrackShow extends React.Component {
   constructor(props) {
@@ -89,7 +90,7 @@ class TrackShow extends React.Component {
   }
 
   render(){
-    let { track, trackplayer, comments, loading, currentUser, deleteTrack } = this.props;
+    let { track, trackplayer, comments, loading, currentUser, deleteTrack, errors } = this.props;
   
     if (this.state.firstLoad || loading) return (<div>loading</div>);
     let user = this.props.users[track.uploaderId] || track;
@@ -117,7 +118,8 @@ class TrackShow extends React.Component {
           </div>
         </div>
           <div className='track-show-container-bottom'>
-            <div className='tscb-left'>
+            <TrackIndex fetchTracks={this.props.fetchTracks} tracks={this.props.tracks} errors={errors} userpage={true} />
+            {/*<div className='tscb-left'>
               <div className='track-show-comment-bar'>
                 <CommentsContainer track={track}/>
               </div>
@@ -146,7 +148,7 @@ class TrackShow extends React.Component {
                 <a href="https://www.linkedin.com/in/michael-pompili-916a0837/" target="_blank"><img src="https://res.cloudinary.com/mpompili/image/upload/v1526335358/linkedinad.jpg"/></a> 
               </div> 
               <div className="extraspace"></div> 
-            </div>
+            </div>*/}
         </div>
       </div>
     );

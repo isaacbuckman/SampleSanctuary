@@ -13,6 +13,17 @@ const mapStateToProps = (state, ownProps) => ({
   currentUser: state.session.currentUser
 });
 
+// const mapStateToProps = (state, ownProps) => {
+//   console.log('HELLLOOO');
+//   console.log(ownProps);
+//   return {
+//     tracks: state.entities.tracks || {},
+//     errors: state.errors.tracks || [],
+//     trackplayer: state.trackplayer || {},
+//     currentUser: state.session.currentUser
+//   }
+// };
+
 const mapDispatchToProps = (dispatch) => ({
   fetchTracks: () => dispatch(fetchTracks()),
   fetchTrack: (id) => dispatch(fetchTrack(id)),

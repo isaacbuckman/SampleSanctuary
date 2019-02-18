@@ -55,7 +55,7 @@ class Search extends React.Component {
     render(){
         return (
             <div className="search-bar" >
-                <input id="search" type="search" onChange={e => this.updateSearch(e)} value={this.state.searchText} placeholder="Search..."/> 
+                <input id="search" type="search" onChange={e => this.updateSearch(e)} value={this.state.searchText} placeholder="Search..." autoComplete="off"/> 
                 <div className="search-icon"></div> 
                 <SearchResults noSearch={this.state.searchResults.noSearch} searchText={this.state.searchText} results={this.state.searchResults.results}/> 
             </div>

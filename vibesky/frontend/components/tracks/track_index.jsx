@@ -23,7 +23,6 @@ class TrackIndex extends React.Component {
   }
 
   render(){
-
     let { tracks, errors } = this.props;
     let trackItems = Object.keys(tracks).map(key => (
       <TrackItem key={key} track={tracks[key]} user={this.props.user || null} />
@@ -48,12 +47,12 @@ class TrackIndex extends React.Component {
           </div>
         </div> 
           <div className="sidebar-placeholder">
-            <div className="ad-container">
+            {/*<div className="ad-container">
               <a href="https://github.com/Mpompili" target="_blank"><img src="https://res.cloudinary.com/mpompili/image/upload/v1526013412/gotogithub.jpg"/></a>  
             </div> 
             <div className="ad-container">
               <a href="https://www.linkedin.com/in/michael-pompili-916a0837/" target="_blank"><img src="https://res.cloudinary.com/mpompili/image/upload/v1526335358/linkedinad.jpg"/></a>
-            </div> 
+            </div> */}
           </div>
       </span>
         );
