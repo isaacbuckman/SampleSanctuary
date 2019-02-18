@@ -6,23 +6,26 @@ import { createLike, deleteLike } from '../../actions/like_actions';
 
 // Object.keys(state.entities.tracks).map(key=> state.entities.tracks[key])
 
-const mapStateToProps = (state, ownProps) => ({
-  tracks: state.entities.tracks || {},
-  errors: state.errors.tracks || [],
-  trackplayer: state.trackplayer || {},
-  currentUser: state.session.currentUser
-});
+// const mapStateToProps = (state, ownProps) => ({
+//   tracks: state.entities.tracks || {},
+//   errors: state.errors.tracks || [],
+//   trackplayer: state.trackplayer || {},
+//   currentUser: state.session.currentUser
+// });
 
-// const mapStateToProps = (state, ownProps) => {
-//   console.log('HELLLOOO');
-//   console.log(ownProps);
-//   return {
-//     tracks: state.entities.tracks || {},
-//     errors: state.errors.tracks || [],
-//     trackplayer: state.trackplayer || {},
-//     currentUser: state.session.currentUser
-//   }
-// };
+const mapStateToProps = (state, ownProps) => {
+  const tracks = Object.values(state.entities.tracks);
+  let samples = tracks.filter((track) => {
+    if (!track.sample) return track;
+  });
+
+  return {
+    tracks: samples || {},
+    errors: state.errors.tracks || [],
+    trackplayer: state.trackplayer || {},
+    currentUser: state.session.currentUser
+  }
+};
 
 const mapDispatchToProps = (dispatch) => ({
   fetchTracks: () => dispatch(fetchTracks()),
