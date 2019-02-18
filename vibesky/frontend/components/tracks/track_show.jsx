@@ -118,7 +118,7 @@ class TrackShow extends React.Component {
           </div>
         </div>
           <div className='track-show-container-bottom'>
-            <TrackIndex fetchTracks={this.props.fetchTracks} tracks={this.props.tracks} errors={errors} userpage={true} />
+            <TrackIndex fetchTracks={this.props.fetchTracks} tracks={this.props.samplers} errors={errors} userpage={true} />
             {/*<div className='tscb-left'>
               <div className='track-show-comment-bar'>
                 <CommentsContainer track={track}/>

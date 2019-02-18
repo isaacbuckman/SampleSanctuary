@@ -11,14 +11,13 @@ const currentUserLikes = ({session: {currentUser}}, trackid) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  //const tracks = Object.values(state.entities.tracks);
-  // let samplers = tracks.filter((track) => {
-  //   if (track.sample == ownProps.match.params.id) return track;
-  // });
+  const tracks = Object.values(state.entities.tracks);
+  let samplers = tracks.filter((track) => {
+    if (track.sample == ownProps.match.params.id) return track;
+  });
 
   return ({
-    tracks : state.entities.tracks, //ib
-    //samplers : samplers,
+    samplers : samplers,
     track: state.entities.tracks[ownProps.match.params.id],
     users: state.entities.users,  
     comments: state.entities.comments, 
