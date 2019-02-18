@@ -6,6 +6,9 @@ class Api::TracksController < ApplicationController
 
   def create
     @track = current_user.tracks.new(track_params)
+    puts track_params
+    puts @track
+    puts 'IB---------------------------------------------YES WE HERE-------------------------------------------------------A;SDLKFJA;DLKSFJ;ALKSDJFA;LSDJKF;LADJKS'
     if @track.save
       render "api/tracks/show"
     else
@@ -39,6 +42,6 @@ class Api::TracksController < ApplicationController
 
   private
   def track_params
-    params.require(:track).permit(:title, :description, :image, :audio, :audioPeaks)
+    params.require(:track).permit(:title, :description, :sample, :image, :audio, :audioPeaks)
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180610024606) do
+ActiveRecord::Schema.define(version: 20190218224239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20180610024606) do
     t.datetime "audio_updated_at"
     t.text "track_peaks"
     t.text "audioPeaks"
+    t.integer "sample"
     t.index ["uploader_id"], name: "index_tracks_on_uploader_id"
   end
 

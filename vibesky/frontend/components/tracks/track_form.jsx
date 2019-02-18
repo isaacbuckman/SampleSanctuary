@@ -32,6 +32,7 @@ class TrackForm extends React.Component {
     const formData = new FormData();
     formData.append("track[title]", this.state.title);
     formData.append("track[description]", this.state.description);
+    formData.append("track[sample]", 24); //ib, if (this.state.sample) formData.append("track[sample]", this.state.sample);
     if (this.state.imageFile) formData.append("track[image]", this.state.imageFile);
     if (this.state.audioFile) formData.append("track[audio]", this.state.audioFile);
     this.props.action(formData, this.props.track.id).then(() => this.props.history.push('/tracks'));

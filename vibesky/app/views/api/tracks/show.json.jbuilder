@@ -2,6 +2,7 @@ json.track do
   json.id @track.id
   json.title @track.title
   json.description @track.description
+  json.sample @track.sample
   json.uploader @track.user.email
   json.uploaderId @track.user.id
   json.uploaderPic asset_path(@track.user.image.url)
