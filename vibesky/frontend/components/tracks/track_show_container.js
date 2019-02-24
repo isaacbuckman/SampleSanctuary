@@ -18,6 +18,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return ({
     samplers : samplers,
+    sample : state.entities.tracks[ownProps.match.params.id].sample,
     track: state.entities.tracks[ownProps.match.params.id],
     users: state.entities.users,  
     comments: state.entities.comments, 

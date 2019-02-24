@@ -97,61 +97,84 @@ class TrackShow extends React.Component {
     let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
       'ts-play playing' : 'ts-play';
     let buttonBar = this.userTrackButtons();
-    
-    return (
-      <div className='track-show-page'>
-        <div className='track-show-container'>
-          <div className='track-show-detail'>
-            <div className='track-sd-top'>
-              <div className={buttonPlaying} onClick={(e) => this.songButton(track, e)}></div>
-              <div className='track-sd-info'>
-                <a href={`/#/users/${track.uploaderId}`}><div className='track-sd-uploader'>{track.uploader}</div></a> 
-                <div className='track-sd-title'>{track.title}</div>
+    if (!this.props.sample) {
+      return (
+        <div className='track-show-page'>
+          <div className='track-show-container'>
+            <div className='track-show-detail'>
+              <div className='track-sd-top'>
+                <div className={buttonPlaying} onClick={(e) => this.songButton(track, e)}></div>
+                <div className='track-sd-info'>
+                  <a href={`/#/users/${track.uploaderId}`}><div className='track-sd-uploader'>{track.uploader}</div></a> 
+                  <div className='track-sd-title'>{track.title}</div>
+                </div>
+              </div>
+              <div className='track-sd-bott'>
+                <WaveFormContainer track={track} height={100} color={'#fff'}/>
               </div>
             </div>
-            <div className='track-sd-bott'>
-              <WaveFormContainer track={track} height={100} color={'#fff'}/>
+            <div className='track-show-image-container'>
+              <img src={track.imageUrl}/>
             </div>
           </div>
-          <div className='track-show-image-container'>
-            <img src={track.imageUrl}/>
+            <div className='track-show-container-bottom'>
+              <TrackIndex fetchTracks={this.props.fetchTracks} tracks={this.props.samplers} errors={errors} samplepage={true} />
           </div>
-        </div>
-          <div className='track-show-container-bottom'>
-            <TrackIndex fetchTracks={this.props.fetchTracks} tracks={this.props.samplers} errors={errors} userpage={true} />
-            {/*<div className='tscb-left'>
-              <div className='track-show-comment-bar'>
-                <CommentsContainer track={track}/>
+        </div>);
+    } else {
+      return (
+        <div className='track-show-page'>
+          <div className='track-show-container'>
+            <div className='track-show-detail'>
+              <div className='track-sd-top'>
+                <div className={buttonPlaying} onClick={(e) => this.songButton(track, e)}></div>
+                <div className='track-sd-info'>
+                  <a href={`/#/users/${track.uploaderId}`}><div className='track-sd-uploader'>{track.uploader}</div></a> 
+                  <div className='track-sd-title'>{track.title}</div>
+                </div>
               </div>
-              { buttonBar }
-              <div className='ts-uploader-ci'>
-                <div className='ts-uc-left'>
-                  <div className='ts-artist-circle'>
-                  <a href={`/#/users/${track.uploaderId}`}><img src={user.imageUrl}/></a> 
-                  </div>
-                  <a href={`/#/users/${track.uploaderId}`}><div className='ts-artist-name'>{track.uploader}</div></a> 
-                  <div className='ts-follow-btn'>Follow</div> 
-                </div> 
-                <div className='ts-uc-right'>
-                  <div className='ts-track-description'>{track.description}</div> 
-                  <div className='track-show-comment-index'>
-                    <CommentIndexContainer track={track}/> 
+              <div className='track-sd-bott'>
+                <WaveFormContainer track={track} height={100} color={'#fff'}/>
+              </div>
+            </div>
+            <div className='track-show-image-container'>
+              <img src={track.imageUrl}/>
+            </div>
+          </div>
+            <div className='track-show-container-bottom'>
+              <div className='tscb-left'>
+                <div className='track-show-comment-bar'>
+                  <CommentsContainer track={track}/>
+                </div>
+                { buttonBar }
+                <div className='ts-uploader-ci'>
+                  <div className='ts-uc-left'>
+                    <div className='ts-artist-circle'>
+                    <a href={`/#/users/${track.uploaderId}`}><img src={user.imageUrl}/></a> 
+                    </div>
+                    <a href={`/#/users/${track.uploaderId}`}><div className='ts-artist-name'>{track.uploader}</div></a> 
+                    <div className='ts-follow-btn'>Follow</div> 
+                  </div> 
+                  <div className='ts-uc-right'>
+                    <div className='ts-track-description'>{track.description}</div> 
+                    <div className='track-show-comment-index'>
+                      <CommentIndexContainer track={track}/> 
+                    </div> 
                   </div> 
                 </div> 
-              </div> 
-            </div>
-            <div className='tscb-sidebar'>
-              <div className="ad-container">
-                <a href="https://github.com/Mpompili" target="_blank"><img src="https://res.cloudinary.com/mpompili/image/upload/v1526013412/gotogithub.jpg"/></a> 
-              </div> 
-              <div className="ad-container">
-                <a href="https://www.linkedin.com/in/michael-pompili-916a0837/" target="_blank"><img src="https://res.cloudinary.com/mpompili/image/upload/v1526335358/linkedinad.jpg"/></a> 
-              </div> 
-              <div className="extraspace"></div> 
-            </div>*/}
-        </div>
-      </div>
-    );
+              </div>
+              <div className='tscb-sidebar'>
+                <div className="ad-container">
+                  <a href="https://github.com/Mpompili" target="_blank"><img src="https://res.cloudinary.com/mpompili/image/upload/v1526013412/gotogithub.jpg"/></a> 
+                </div> 
+                <div className="ad-container">
+                  <a href="https://www.linkedin.com/in/michael-pompili-916a0837/" target="_blank"><img src="https://res.cloudinary.com/mpompili/image/upload/v1526335358/linkedinad.jpg"/></a> 
+                </div> 
+                <div className="extraspace"></div> 
+              </div>
+          </div>
+        </div>);
+    }
   }
 }
 

@@ -29,7 +29,7 @@ class TrackIndex extends React.Component {
     ));
 
     let indexTab;
-     if (this.props.userpage) {
+     if (this.props.userpage || this.props.samplepage) {
       return (
         <div className="track-index">
           {trackItems}
@@ -54,8 +54,7 @@ class TrackIndex extends React.Component {
               <a href="https://www.linkedin.com/in/michael-pompili-916a0837/" target="_blank"><img src="https://res.cloudinary.com/mpompili/image/upload/v1526335358/linkedinad.jpg"/></a>
             </div> */}
           </div>
-      </span>
-        );
+      </span>);
      }
 
     // let styledErrors = errors.map(err => <li>{err}</li>);
