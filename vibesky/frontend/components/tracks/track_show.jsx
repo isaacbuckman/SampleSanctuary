@@ -97,7 +97,7 @@ class TrackShow extends React.Component {
     let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
       'ts-play playing' : 'ts-play';
     let buttonBar = this.userTrackButtons();
-    if (!this.props.sample) {
+    if (!track.sample) {
       return (
         <div className='track-show-page'>
           <div className='track-show-container'>
