@@ -112,29 +112,33 @@ ActiveRecord::Base.transaction do
 #       audio: File.new(Rails.root.join('app','assets','tracks',"#{track}"))
 #     })
 #   end
-7.times do |t|
-Track.create!({
-  title: "#{track_names[t][0..-5]}",
-  uploader_id: User.find_by(email: uploadernames[t]).id, 
-  description: "testing", 
-  audio: File.new(Rails.root.join('app','assets','tracks',"#{track_names[t]}")),
-  image: File.new(Rails.root.join('app','assets','trackimages',"#{track_pics[t]}")),
-})
 
-end 
+#ib uncomment START
 
-trackids = track_names.map do |tname|
-  Track.find_by(title: tname[0..-5]).id
-end 
+# 7.times do |t|
+# Track.create!({
+#   title: "#{track_names[t][0..-5]}",
+#   uploader_id: User.find_by(email: uploadernames[t]).id, 
+#   description: "testing", 
+#   audio: File.new(Rails.root.join('app','assets','tracks',"#{track_names[t]}")),
+#   image: File.new(Rails.root.join('app','assets','trackimages',"#{track_pics[t]}")),
+# })
 
-78.times do |t| 
-  Comment.create!({
-    body: comments.sample,
-    user_id: uploaderids.sample,
-    track_id: trackids.sample 
-  })
-end 
+# end 
 
+# trackids = track_names.map do |tname|
+#   Track.find_by(title: tname[0..-5]).id
+# end 
+
+# 78.times do |t| 
+#   Comment.create!({
+#     body: comments.sample,
+#     user_id: uploaderids.sample,
+#     track_id: trackids.sample 
+#   })
+# end 
+
+#ib uncomment END
 
   # 10.times do |t|
   #   Track.create!({
