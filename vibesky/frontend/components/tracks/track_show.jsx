@@ -71,20 +71,48 @@ class TrackShow extends React.Component {
 
   userTrackButtons() {
     let track = this.props.track;
-    let likeButton =  this.props.liked ? 'controller-btn like-btn liked' : 'controller-btn like-btn'; 
-    if (this.props.currentUser.id == track.uploaderId){
-      return (
-        <div className='button-bar'>
-          <div className={likeButton} onClick={() => this.props.toggleLike(track.id)}>like</div>
-          <Link to={`/tracks/${track.id}/edit`} className="controller-btn edit-btn">Edit</Link>
-          <div className='controller-btn delete-btn' onClick={(e) => this.deleteSong(track.id, e)}>Delete</div>
-        </div>
-      );}else{
+    let likeButton = this.props.liked ? (<div className='controller-btn like-btn liked' onClick={(e) => this.toggleLike(track.id, e)}>Like</div>)
+                                      : (<div className='controller-btn like-btn' onClick={(e) => this.toggleLike(track.id, e)}>Like</div>);
+    let sampleButton = (<Link to='/tracks/new' className='controller-btn sample-btn'>Sample</Link>);
+    let editButton = (<Link to={`/tracks/${track.id}/edit`} className="controller-btn edit-btn">Edit</Link>);
+    let deleteButton = (<div className='controller-btn delete-btn' onClick={(e) => this.deleteSong(track.id, e)}>Delete</div>);
+
+    if (!track.sample) {
+      if (this.props.currentUser.id == track.uploaderId){
         return (
           <div className='button-bar'>
-            <div className={likeButton} onClick={() => this.props.toggleLike(track.id)}>like</div>
+            {likeButton}
+            {sampleButton}
+            {editButton}
+            {deleteButton}
           </div>
-        );}
+        );
+      } else {
+        return (
+          <div className='button-bar'>
+            {likeButton}
+            {sampleButton}
+          </div>
+        );
+      }
+    } else {
+      if (this.props.currentUser.id == track.uploaderId){
+        return (
+          <div className='button-bar'>
+            {likeButton}
+            {editButton}
+            {deleteButton}
+          </div>
+        );
+      } else {
+        return (
+          <div className='button-bar'>
+            {likeButton}
+          </div>
+        );
+      }
+    }
+
   }
 
   deleteSong(trackId, e){
@@ -122,6 +150,7 @@ class TrackShow extends React.Component {
             </div>
           </div>
             <div className='track-show-container-bottom'>
+              { buttonBar }
               <TrackIndex fetchTracks={this.props.fetchTracks} tracks={this.props.samplers} errors={errors} samplepage={true} />
           </div>
         </div>);

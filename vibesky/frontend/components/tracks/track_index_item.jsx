@@ -69,21 +69,47 @@ class TrackItem extends React.Component {
 
   userTrackButtons() {
     let track = this.props.track;
-    let likeButton =  this.props.liked ? 'controller-btn like-btn liked' : 'controller-btn like-btn'; 
+    let likeButton = this.props.liked ? (<div className='controller-btn like-btn liked' onClick={(e) => this.toggleLike(track.id, e)}>Like</div>)
+                                      : (<div className='controller-btn like-btn' onClick={(e) => this.toggleLike(track.id, e)}>Like</div>);
+    let sampleButton = (<Link to='/tracks/new' className='controller-btn sample-btn'>Sample</Link>);
+    let editButton = (<Link to={`/tracks/${track.id}/edit`} className="controller-btn edit-btn">Edit</Link>);
+    let deleteButton = (<div className='controller-btn delete-btn' onClick={(e) => this.deleteSong(track.id, e)}>Delete</div>);
 
-    if (this.props.currentUser.id == track.uploaderId){
-      return (
-        <div className='button-bar'>
-          <div className={likeButton} onClick={(e) => this.toggleLike(track.id, e)}>like</div>
-          <Link to={`/tracks/${track.id}/edit`} className="controller-btn edit-btn">Edit</Link>
-          <div className='controller-btn delete-btn' onClick={(e) => this.deleteSong(track.id, e)}>Delete</div>
-        </div>
-      );}else{
+    if (!track.sample) {
+      if (this.props.currentUser.id == track.uploaderId){
         return (
           <div className='button-bar'>
-            <div className={likeButton} onClick={(e) => this.toggleLike(track.id, e)}>like</div>
+            {likeButton}
+            {sampleButton}
+            {editButton}
+            {deleteButton}
           </div>
-        );}
+        );
+      } else {
+        return (
+          <div className='button-bar'>
+            {likeButton}
+            {sampleButton}
+          </div>
+        );
+      }
+    } else {
+      if (this.props.currentUser.id == track.uploaderId){
+        return (
+          <div className='button-bar'>
+            {likeButton}
+            {editButton}
+            {deleteButton}
+          </div>
+        );
+      } else {
+        return (
+          <div className='button-bar'>
+            {likeButton}
+          </div>
+        );
+      }
+    }
   }
 
   showComments(){
