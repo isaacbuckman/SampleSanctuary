@@ -10,16 +10,20 @@ class TrackShow extends React.Component {
     super(props);
     this.songButton = this.songButton.bind(this);
     this.state = {
-      firstLoad: true
+      isFetching: true
     };
   }
   
   componentWillReceiveProps(newProps) {
     if (this.props.match.params.id !== newProps.match.params.id){
-      this.props.fetchTrack(newProps.match.params.id);
+      this.setState({isFetching: true});
+      this.props.fetchTrack(newProps.match.params.id)
+      .then(() => {
+        this.setState({isFetching: false});
+      });
     }
 
-    if (this.state.firstLoad || this.props.loading) return;
+    if (this.state.isFetching) return;
     let { playing, trackId, player, progressTrackId } = this.props.trackplayer;
     let trackProg = progressTrackId[this.props.track.id];
     let thisId = this.props.track.id;
@@ -33,7 +37,7 @@ class TrackShow extends React.Component {
   componentDidMount(){
     this.props.fetchTrack(this.props.match.params.id)
     .then(()=> {
-      this.setState({firstLoad: false});
+      this.setState({isFetching: false});
       this.props.fetchUser(this.props.track.uploaderId);
     }
     );
@@ -90,9 +94,9 @@ class TrackShow extends React.Component {
   }
 
   render(){
-    let { track, trackplayer, comments, loading, currentUser, deleteTrack, errors } = this.props;
+    let { track, trackplayer, comments, currentUser, deleteTrack, errors } = this.props;
   
-    if (this.state.firstLoad || loading) return (<div>loading</div>);
+    if (this.state.isFetching) return (<div>Loading</div>);
     let user = this.props.users[track.uploaderId] || track;
     let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
       'ts-play playing' : 'ts-play';

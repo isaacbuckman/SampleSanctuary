@@ -24,7 +24,6 @@ const mapStateToProps = (state, ownProps) => {
     errors: state.errors.tracks || [],
     trackplayer: state.trackplayer || {},
     currentUser: state.session.currentUser,
-    loading: state.ui.loading,
     liked: currentUserLikes(state, ownProps.match.params.id) 
   });
 };

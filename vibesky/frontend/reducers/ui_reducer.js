@@ -1,10 +1,10 @@
-import { REQUEST_FETCH_TRACK } from '../actions/track_actions'; 
+import { REQUEST_TRACK_FETCH } from '../actions/track_actions'; 
 import { RECEIVE_TRACK } from '../actions/comment_actions';
 
 const UIReducer = (state = {loading: false}, action) => {
     Object.freeze(state);
     switch(action.type){
-        case REQUEST_FETCH_TRACK:
+        case REQUEST_TRACK_FETCH:
             return {loading: true};  
         case RECEIVE_TRACK: 
             return {loading: false}; 
