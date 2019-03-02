@@ -8,6 +8,7 @@ const mapStateToProps = (state, ownProps) => ({
   errors: state.errors.tracks || [],
   track: {title: '',
    description: '',
+   sample: '',
    uploader_id: state.session.currentUser.id,
    imageFile: null,
    imageUrl: null,

@@ -7,6 +7,10 @@ class TrackForm extends React.Component {
     this.state = this.props.track;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateFile = this.updateFile.bind(this);
+
+    if (this.props.match.params.id) {
+      this.state.sample = this.props.match.params.id;
+    }
   }
 
   update(type) {

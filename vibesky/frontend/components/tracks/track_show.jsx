@@ -73,7 +73,7 @@ class TrackShow extends React.Component {
     let track = this.props.track;
     let likeButton = this.props.liked ? (<div className='controller-btn like-btn liked' onClick={(e) => this.toggleLike(track.id, e)}>Like</div>)
                                       : (<div className='controller-btn like-btn' onClick={(e) => this.toggleLike(track.id, e)}>Like</div>);
-    let sampleButton = (<Link to='/tracks/new' className='controller-btn sample-btn'>Sample</Link>);
+    let sampleButton = (<Link to={`/tracks/new/${track.id}`} className='controller-btn sample-btn'>Sample</Link>);
     let editButton = (<Link to={`/tracks/${track.id}/edit`} className="controller-btn edit-btn">Edit</Link>);
     let deleteButton = (<div className='controller-btn delete-btn' onClick={(e) => this.deleteSong(track.id, e)}>Delete</div>);
 
@@ -112,7 +112,6 @@ class TrackShow extends React.Component {
         );
       }
     }
-
   }
 
   deleteSong(trackId, e){
@@ -150,8 +149,12 @@ class TrackShow extends React.Component {
             </div>
           </div>
             <div className='track-show-container-bottom'>
-              { buttonBar }
-              <TrackIndex fetchTracks={this.props.fetchTracks} tracks={this.props.samplers} errors={errors} samplepage={true} />
+                <div className='tscb-left'>
+                  { buttonBar }
+                  <div className='ts-uploader-ci'>
+                    <TrackIndex fetchTracks={this.props.fetchTracks} tracks={this.props.samplers} errors={errors} samplepage={true} />
+                  </div> 
+              </div>
           </div>
         </div>);
     } else {
@@ -196,7 +199,7 @@ class TrackShow extends React.Component {
                   </div> 
                 </div> 
               </div>
-              <div className='tscb-sidebar'>
+              {/*<div className='tscb-sidebar'>
                 <div className="ad-container">
                   <a href="https://github.com/Mpompili" target="_blank"><img src="https://res.cloudinary.com/mpompili/image/upload/v1526013412/gotogithub.jpg"/></a> 
                 </div> 
@@ -204,7 +207,7 @@ class TrackShow extends React.Component {
                   <a href="https://www.linkedin.com/in/michael-pompili-916a0837/" target="_blank"><img src="https://res.cloudinary.com/mpompili/image/upload/v1526335358/linkedinad.jpg"/></a> 
                 </div> 
                 <div className="extraspace"></div> 
-              </div>
+              </div>*/}
           </div>
         </div>);
     }
