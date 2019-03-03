@@ -69,6 +69,11 @@ class TrackShow extends React.Component {
     this.props.deleteTrack(trackId).then(()=> this.props.history.push('/tracks'));
   }
 
+  toggleLike(trackId, e){
+    e.preventDefault();
+    this.props.toggleLike(trackId);
+  }
+
   userTrackButtons() {
     let track = this.props.track;
     let likeButton = this.props.liked ? (<div className='controller-btn like-btn liked' onClick={(e) => this.toggleLike(track.id, e)}>Like</div>)
