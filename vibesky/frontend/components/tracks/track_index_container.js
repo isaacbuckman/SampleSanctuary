@@ -19,12 +19,12 @@ const mapStateToProps = (state, ownProps) => {
     if (!track.sample) return track;
   });
 
-  return {
+  return ({
     tracks: samples || {},
     errors: state.errors.tracks || [],
     trackplayer: state.trackplayer || {},
     currentUser: state.session.currentUser
-  }
+  })
 };
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Redirect, withRouter } from 'react-router-dom';
+import Select from 'react-select';
 
 class TrackForm extends React.Component {
   constructor(props) {
@@ -7,14 +8,21 @@ class TrackForm extends React.Component {
     this.state = this.props.track;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateFile = this.updateFile.bind(this);
+    this.updateSelection = this.updateSelection.bind(this);
 
     if (this.props.match.params.id) {
-      this.state.sample = this.props.match.params.id;
+      const id = this.props.match.params.id;
+      this.state.sample = ({'value':id,'label':'title of song?'});
     }
   }
 
   update(type) {
     return e => this.setState({ [type]: e.currentTarget.value });
+  }
+
+  updateSelection(e) {
+    console.log(e);
+    this.setState({'sample' : e});
   }
 
   updateFile(type, e) {
@@ -36,13 +44,17 @@ class TrackForm extends React.Component {
     const formData = new FormData();
     formData.append("track[title]", this.state.title);
     formData.append("track[description]", this.state.description);
-    formData.append("track[sample]", parseInt(this.state.sample));
+    formData.append("track[sample]", parseInt(this.state.sample.value));
     if (this.state.imageFile) formData.append("track[image]", this.state.imageFile);
     if (this.state.audioFile) formData.append("track[audio]", this.state.audioFile);
     this.props.action(formData, this.props.track.id).then(() => this.props.history.push('/tracks'));
   }
 
   generalDetailForm() {
+    const options = this.props.tracks.map((sample) => 
+      ({'value':sample.id, 'label': sample.title})
+    );
+
     return (
     <div className="detail-submit">
       <div className='ds-image-box'>
@@ -56,7 +68,7 @@ class TrackForm extends React.Component {
         <p className='tdf-text tdf-required'>Title</p>
         <input className='txt-input'type="text" onChange={this.update('title')} value={this.state.title}/>
         <p className='tdf-text'>Sample</p>
-        <input className='txt-input'type="text" onChange={this.update('sample')} value={this.state.sample}/>
+        <Select onChange={this.updateSelection} value={this.state.sample} options={options}/>
         <p className='tdf-text'>Description</p>
         <textarea className='txt-input txta active-ring' onChange={this.update('description')} value={this.state.description}></textarea>
         <input className="inputLabel" type="submit" value={`${this.props.formType}`} />
