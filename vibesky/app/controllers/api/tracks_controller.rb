@@ -6,9 +6,6 @@ class Api::TracksController < ApplicationController
 
   def create
     @track = current_user.tracks.new(track_params)
-    puts track_params
-    puts @track
-    puts 'IB---------------------------------------------YES WE HERE-------------------------------------------------------A;SDLKFJA;DLKSFJ;ALKSDJFA;LSDJKF;LADJKS'
     if @track.save
       render "api/tracks/show"
     else
