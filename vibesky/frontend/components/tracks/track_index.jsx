@@ -39,8 +39,8 @@ class TrackIndex extends React.Component {
         <span className='track-index-page-container'>
         <div className='track-index-container invisi-scroll'>
           <ul className='track-index-tabs'>
-            <li className='ti-tab'><a href='/#/tracks'>Stream</a></li>
-            {/* <li className='ti-tab ttmid'><a href='/#/tracks'>Discover</a></li> */}
+            <li className='ti-tab'><a href='/#/tracks/samples'>Samples</a></li>
+            <li className='ti-tab ttmid'><a href='/#/tracks/samplers'>Tracks</a></li>
           </ul> 
           <div className="track-index">
             {trackItems}

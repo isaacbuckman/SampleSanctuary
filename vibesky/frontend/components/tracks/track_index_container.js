@@ -14,13 +14,24 @@ import { createLike, deleteLike } from '../../actions/like_actions';
 // });
 
 const mapStateToProps = (state, ownProps) => {
-  const tracks = Object.values(state.entities.tracks);
-  let samples = tracks.filter((track) => {
-    if (!track.sample) return track;
-  });
+  console.log(ownProps);
+  let tracks = Object.values(state.entities.tracks);
+  if (ownProps.match.path == "/tracks/samples") {
+    tracks = tracks.filter((track) => {
+      if (!track.sample) return track;
+    });
+  } else if (ownProps.match.path == "/tracks/samplers") {
+    tracks = tracks.filter((track) => {
+      if (track.sample) return track;
+    });
+  } else {
+    tracks = tracks.filter((track) => {
+      if (!track.sample) return track;
+    });
+  }
 
   return ({
-    tracks: samples || {},
+    tracks: tracks || {},
     errors: state.errors.tracks || [],
     trackplayer: state.trackplayer || {},
     currentUser: state.session.currentUser
