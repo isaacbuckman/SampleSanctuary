@@ -71,7 +71,7 @@ class TrackItem extends React.Component {
     let track = this.props.track;
     let likeButton = this.props.liked ? (<div className='controller-btn like-btn liked' onClick={(e) => this.toggleLike(track.id, e)}>Like</div>)
                                       : (<div className='controller-btn like-btn' onClick={(e) => this.toggleLike(track.id, e)}>Like</div>);
-    let sampleButton = (<Link to={`/tracks/new/${track.id}`} className='controller-btn sample-btn'>Sample</Link>);
+    let sampleButton = (<Link to={`/tracks/${track.id}/new`} className='controller-btn sample-btn'>Sample</Link>);
     let editButton = (<Link to={`/tracks/${track.id}/edit`} className="controller-btn edit-btn">Edit</Link>);
     let deleteButton = (<div className='controller-btn delete-btn' onClick={(e) => this.deleteSong(track.id, e)}>Delete</div>);
 

@@ -5,11 +5,26 @@ import { fetchTrack, updateTrack } from '../../actions/track_actions';
 // Object.keys(state.entities.tracks).map(key=> state.entities.tracks[key])
 
 // tracks: state.entities.tracks || {},
-const mapStateToProps = (state, ownProps) => ({
-  errors: state.errors.tracks || [],
-  track: state.entities.tracks[ownProps.match.params.id],
-  formType: 'update'
-});
+
+// const mapStateToProps = (state, ownProps) => ({
+//   errors: state.errors.tracks || [],
+//   track: state.entities.tracks[ownProps.match.params.id],
+//   formType: 'update'
+// });
+
+const mapStateToProps = (state, ownProps) => {
+  const tracks = Object.values(state.entities.tracks);
+  let samples = tracks.filter((track) => {
+    if (!track.sample) return track;
+  });
+
+  return ({
+    tracks: samples || {},
+    errors: state.errors.tracks || [],
+    track: state.entities.tracks[ownProps.match.params.id],
+    formType: 'update'
+  })
+};
 
 const mapDispatchToProps = (dispatch) => ({
   fetchTrack: (id) => dispatch(fetchTrack(id)),
@@ -28,9 +43,10 @@ class EditTrackForm extends React.Component {
   }
 
   render() {
-    const { action, formType, track } = this.props;
+    const { tracks, action, formType, track } = this.props;
     return (
       <TrackForm
+        tracks={tracks}
         action={action}
         formType={formType}
         track={track} />
