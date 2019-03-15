@@ -107,13 +107,13 @@ class UserShow extends React.Component {
             <div className='track-index-container'>
               <ul className='track-index-tabs'>
                 <li className={tag1}><a onClick={()=> this.togglePostTracks()}>Tracks</a></li>
-                <li className={tag2}><a onClick={()=> this.togglePostLikes()}>Liked</a></li>
+                {/*<li className={tag2}><a onClick={()=> this.togglePostLikes()}>Liked</a></li>*/}
               </ul>
               {tIndex}
            
             </div> 
             <div className="sidebar-placeholder">
-              <div className="user-stats">
+              {/*<div className="user-stats">
                 <div className="us-track-num">
                   <p>Tracks</p>
                   <p>{parseInt(tracks.length)}</p> 
@@ -130,7 +130,7 @@ class UserShow extends React.Component {
               </div> 
               <div className="ad-container">
                 <a href="https://www.linkedin.com/in/michael-pompili-916a0837/" target="_blank"><img src="https://res.cloudinary.com/mpompili/image/upload/v1526335358/linkedinad.jpg"/></a> 
-              </div> 
+              </div>  */}
               <div className="extraspace"></div> 
             </div>
           </span>

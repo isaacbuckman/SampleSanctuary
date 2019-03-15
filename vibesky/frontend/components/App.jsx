@@ -24,6 +24,8 @@ const App = () => (
         <ProtectedRoute exact path ='/users/:id' component={UserShowContainer} /> 
         <ProtectedRoute exact path ='/users/:id/edit' component={UserEditContainer} /> 
         <ProtectedRoute exact path ='/tracks/new' component={TrackFormContainer} />
+        <ProtectedRoute exact path ='/tracks/new/sample' component={TrackFormContainer} />
+        <ProtectedRoute exact path ='/tracks/new/sampler' component={TrackFormContainer} />
         <ProtectedRoute exact path ='/tracks/samples' component={TrackIndexContainer} />
         <ProtectedRoute exact path ='/tracks/samplers' component={TrackIndexContainer} />
         <ProtectedRoute exact path ='/tracks/:id/new' component={TrackFormContainer} />

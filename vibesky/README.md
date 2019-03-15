@@ -152,7 +152,7 @@ class WaveForm extends React.Component{
   componentDidMount() {
     this.wavesurfer = WaveSurfer.create({
       container: `#track-${this.props.track.id}-waveform`,
-      progressColor: '#f50',
+      progressColor: '#0096ff',
       barHeight: 3,
       barWidth: 2,
       cursorWidth: 0,

@@ -9,7 +9,7 @@ class TrackForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateFile = this.updateFile.bind(this);
     this.updateSelection = this.updateSelection.bind(this);
-
+    console.log("making options");
     this.options = this.props.tracks.map((sample) =>  //this should all be done in redux
         ({'value':sample.id, 'label': sample.title})
     );
@@ -55,6 +55,12 @@ class TrackForm extends React.Component {
   }
 
   generalDetailForm() {
+    const selectSample = (this.props.match.path != '/tracks/new/sample') ? (
+    <div>
+      <p className='tdf-text'>Sample</p>
+      <Select onChange={this.updateSelection} value={this.state.sample} options={this.options}/>
+    </div>) : null;
+
     return (
     <div className="detail-submit">
       <div className='ds-image-box'>
@@ -67,8 +73,7 @@ class TrackForm extends React.Component {
       <div className='track-detail-form'>
         <p className='tdf-text tdf-required'>Title</p>
         <input className='txt-input'type="text" onChange={this.update('title')} value={this.state.title}/>
-        <p className='tdf-text'>Sample</p>
-        <Select onChange={this.updateSelection} value={this.state.sample} options={this.options}/>
+        {selectSample}
         <p className='tdf-text'>Description</p>
         <textarea className='txt-input txta active-ring' onChange={this.update('description')} value={this.state.description}></textarea>
         <input className="inputLabel" type="submit" value={`${this.props.formType}`} />
@@ -91,7 +96,7 @@ class TrackForm extends React.Component {
       <div className='track-form-container'>
         <form onSubmit={this.handleSubmit} className='track-form'>
           <div className={upload_container}>
-            <h1>Upload to SampleSanctuary</h1>
+            <h1>Upload to SampleSearch</h1>
             <label className='inputLabel il-main active-ring'>Choose a file to upload
               <input className="h-input" type="file" onChange={(e) => this.updateFile('audio', e)}/>
             </label>

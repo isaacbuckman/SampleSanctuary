@@ -14,10 +14,10 @@ class Navbar extends React.Component {
     return (
       <div className="navbar-left">
         <a href="/#/tracks" className="header-logo">
-          <div className="cloud-logo-li"></div>
+          <div className="staff-logo-li"></div>
         </a>
-        <a href="/#/tracks" className="header-item">Stream</a>
-        <a href={`/#/users/${this.props.currentUser.id}`} className="header-item">Collection</a>
+        <a href="/#/tracks" className="header-item">Explore</a>
+        <a href={`/#/users/${this.props.currentUser.id}`} className="header-item">Profile</a>
       </div>
     );
   }
@@ -25,7 +25,13 @@ class Navbar extends React.Component {
   logged_in_right() {
     return (
       <div className="navbar-right">
-        <Link to='/tracks/new' className="header-item">Upload</Link>
+        <div className="dropdown">
+          <Link to='/tracks/new' className="header-item">Upload</Link>
+          <div className="dropdown-content">
+            <Link to='/tracks/new/sample' className="">Upload Sample</Link>
+            <Link to='/tracks/new/sampler' className="">Upload Track</Link>
+          </div>
+        </div>
         <Link to='/home' className="header-item" onClick={this.props.logout}>Logout</Link>
       </div>
     );
