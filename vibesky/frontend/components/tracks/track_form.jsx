@@ -15,9 +15,9 @@ class TrackForm extends React.Component {
     );
 
     if (this.props.formType == 'update' && this.props.track.sample) {
-      Object.assign(this.state, {'sample' : this.options.filter(option => option.value == this.props.track.sample)});
+      this.state['sample'] = this.options.find(option => option.value == this.props.track.sample);
     } else if (this.props.formType == 'create' && this.props.match.params.id) {
-      Object.assign(this.state, {'sample' : this.options.filter(option => option.value == this.props.match.params.id)});
+      this.state['sample'] = this.options.find(option => option.value == this.props.match.params.id);
     }
   }
 
